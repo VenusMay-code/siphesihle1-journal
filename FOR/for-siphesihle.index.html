@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.5, user-scalable=yes">
+    <title>For Siphesihle · a digital love journal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream: #faf6ed;
+            --paper: #fdf9f1;
+            --ink: #3e2f24;
+            --ink-light: #5c4a3a;
+            --terracotta: #c27a6a;
+            --terracotta-dark: #a85d4e;
+            --sage: #a3b899;
+            --shadow-soft: 0 4px 20px rgba(60, 30, 20, 0.07);
+            --shadow-medium: 0 8px 35px rgba(50, 25, 15, 0.1);
+            --shadow-painting: 0 10px 30px rgba(30, 15, 5, 0.18), 0 3px 8px rgba(30, 15, 5, 0.1);
+            --radius-journal: 3rem 0.8rem 3rem 0.8rem;
+            --font-body: 'Cormorant Garamond', Georgia, serif;
+            --font-script: 'Dancing Script', cursive;
+            --font-display: 'Allura', cursive;
+            --content-max: 680px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--cream);
+            font-family: var(--font-body);
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+        }
+
+        .bg-watercolor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .wash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: washDrift 25s ease-in-out infinite;
+        }
+        .wash1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(200, 140, 140, 0.2);
+            top: -8%;
+            left: -10%;
+        }
+        .wash2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(140, 170, 190, 0.25);
+            top: 40%;
+            right: -8%;
+            animation-delay: -8s;
+            animation-duration: 30s;
+        }
+        .wash3 {
+            width: 450px;
+            height: 450px;
+            background: rgba(150, 180, 150, 0.2);
+            bottom: -5%;
+            left: 20%;
+            animation-delay: -15s;
+            animation-duration: 28s;
+        }
+        .wash4 {
+            width: 350px;
+            height: 350px;
+            background: rgba(200, 170, 120, 0.22);
+            top: 55%;
+            left: -5%;
+            animation-delay: -20s;
+            animation-duration: 32s;
+        }
+        .wash5 {
+            width: 300px;
+            height: 300px;
+            background: rgba(200, 140, 140, 0.2);
+            bottom: 20%;
+            right: 10%;
+            animation-delay: -5s;
+            animation-duration: 27s;
+        }
+        @keyframes washDrift {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -25px) scale(1.08);
+            }
+            50% {
+                transform: translate(-20px, 15px) scale(0.94);
+            }
+            75% {
+                transform: translate(15px, 30px) scale(1.05);
+            }
+        }
+
+        .bg-floral {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%23996b5a' stroke-width='0.6'/%3E%3Ccircle cx='40' cy='40' r='6' fill='%23996b5a'/%3E%3Cpath d='M40 22 Q55 10 58 22 Q60 34 40 40' fill='none' stroke='%23996b5a' stroke-width='0.5'/%3E%3Cpath d='M40 22 Q25 10 22 22 Q20 34 40 40' fill='none' stroke='%23996b5a' stroke-width='0.5'/%3E%3Ccircle cx='140' cy='90' r='14' fill='none' stroke='%23a3b899' stroke-width='0.6'/%3E%3Ccircle cx='140' cy='90' r='5' fill='%23a3b899'/%3E%3Ccircle cx='70' cy='150' r='16' fill='none' stroke='%23c9a09a' stroke-width='0.6'/%3E%3Ccircle cx='70' cy='150' r='5' fill='%23c9a09a'/%3E%3C/svg%3E");
+            background-size: 220px 220px;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--terracotta), #c4a44a, var(--sage));
+            z-index: 10000;
+            border-radius: 0 2px 2px 0;
+            pointer-events: none;
+        }
+
+        #particlesCanvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: var(--content-max);
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+        }
+
+        .journal-page {
+            background: var(--paper);
+            border-radius: var(--radius-journal);
+            padding: 2.8rem 2.2rem;
+            position: relative;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(180, 160, 135, 0.3);
+            clip-path: polygon(0% 1.5%, 1.5% 0%, 98.5% 0.5%, 100% 2%, 99.5% 98%, 97% 100%, 2% 99.5%, 0.5% 97%);
+            transition: transform 0.35s, box-shadow 0.35s;
+        }
+        .journal-page:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 45px rgba(40, 20, 10, 0.12);
+        }
+        .journal-page h1,
+        .journal-page h2 {
+            font-family: var(--font-script);
+            font-weight: 600;
+            color: var(--terracotta);
+            text-align: center;
+            margin-bottom: 1.4rem;
+        }
+        .journal-page h1 {
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+        }
+        .journal-page h2 {
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            color: #8d5f50;
+        }
+        .heading-allura {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 3.4rem);
+            color: #d49585;
+            text-align: center;
+            margin-bottom: 0.6rem;
+        }
+        .journal-page p {
+            font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            color: var(--ink-light);
+        }
+        .poem-block {
+            font-style: italic;
+            background: rgba(235, 225, 210, 0.35);
+            padding: 1.8rem 2rem;
+            border-radius: 1.8rem 0.4rem 1.8rem 0.4rem;
+            border-left: 4px solid #d49585;
+            margin: 1.3rem 0;
+        }
+        .reasons-list {
+            list-style: none;
+            padding: 0;
+        }
+        .reasons-list li {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            margin-bottom: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        .reasons-list li::before {
+            content: '🌸';
+            flex-shrink: 0;
+        }
+        .signature {
+            font-family: var(--font-script);
+            font-size: 1.7rem;
+            color: var(--terracotta);
+        }
+
+        .washi-tape {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 90px;
+            height: 22px;
+            background: linear-gradient(135deg, #f0d8c8, #f5e0d0);
+            border-radius: 3px;
+            z-index: 3;
+            opacity: 0.8;
+        }
+        .wax-seal {
+            position: absolute;
+            bottom: -18px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 35% 30%, #d49585, #a85d4e);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .paper-clip {
+            position: absolute;
+            top: -8px;
+            right: 25px;
+            font-size: 2.2rem;
+            z-index: 3;
+            opacity: 0.7;
+            transform: rotate(15deg);
+            user-select: none;
+        }
+
+        .btn {
+            font-family: var(--font-script);
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            padding: 0.75rem 2.5rem;
+            border: none;
+            border-radius: 3rem;
+            cursor: pointer;
+            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.09);
+            transition: all 0.35s;
+            font-weight: 600;
+        }
+        .btn-yes {
+            background: var(--terracotta);
+            color: #fef9f2;
+        }
+        .btn-yes:hover {
+            background: var(--terracotta-dark);
+            transform: scale(1.04);
+        }
+        .btn-no {
+            background: #e8ddd0;
+            color: #5c4a3a;
+        }
+        .btn-no:hover {
+            background: #dfd2c2;
+            transform: scale(1.03);
+        }
+        .btn-shake {
+            animation: shakeBtn 0.55s cubic-bezier(.36, .07, .19, .97) both;
+        }
+        @keyframes shakeBtn {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            15% {
+                transform: translateX(-7px) rotate(-1deg);
+            }
+            30% {
+                transform: translateX(7px) rotate(1deg);
+            }
+            45% {
+                transform: translateX(-5px);
+            }
+            60% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-2px);
+            }
+            90% {
+                transform: translateX(2px);
+            }
+        }
+        .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+        .response-msg {
+            margin-top: 1.8rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+            font-family: var(--font-script);
+            min-height: 3rem;
+            text-align: center;
+            color: var(--ink-light);
+        }
+
+        .art-gallery-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .art-card-inline {
+            flex: 0 1 140px;
+            text-align: center;
+        }
+        .art-frame-sm {
+            border: 5px solid #f5ede0;
+            border-radius: 0.8rem 2rem 0.8rem 2rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            background: #faf5ec;
+        }
+        .art-frame-sm img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.1) brightness(0.98);
+        }
+        .art-label-sm {
+            font-family: var(--font-script);
+            font-size: 0.8rem;
+            color: #7a6858;
+            margin-top: 0.3rem;
+        }
+        .art-label-sm .artist-sm {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 0.65rem;
+            color: #9a8070;
+            display: block;
+        }
+
+        /* Floating side artworks */
+        .floating-artwork {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            transition: transform 0.5s ease-out;
+            width: 130px;
+        }
+        .floating-artwork .art-inner {
+            border: 4px solid #f5ede0;
+            border-radius: 0.6rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-painting);
+            background: #faf5ec;
+            width: 100%;
+        }
+        .floating-artwork img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.12) brightness(0.97);
+        }
+        .floating-artwork .art-label {
+            text-align: center;
+            font-family: var(--font-script);
+            font-size: 0.7rem;
+            color: #7a6858;
+            background: rgba(253, 249, 241, 0.8);
+            border-radius: 1rem;
+            padding: 0.1rem 0.5rem;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+        .floating-artwork .art-label .artist {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 0.6rem;
+            color: #9a8070;
+            display: block;
+        }
+        .float-left {
+            left: 10px;
+        }
+        .float-right {
+            right: 10px;
+        }
+        @media (max-width: 750px) {
+            .floating-artwork {
+                display: none;
+            }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(253, 249, 241, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(180, 155, 130, 0.35);
+            border-radius: 3rem;
+            padding: 0.5rem 1rem;
+            box-shadow: var(--shadow-soft);
+        }
+        .music-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(180, 155, 130, 0.4);
+            background: var(--paper);
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.35s;
+            color: var(--ink-light);
+        }
+        .music-btn:hover {
+            background: #f5ede0;
+            transform: scale(1.08);
+        }
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 70px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--terracotta), var(--sage));
+            outline: none;
+            cursor: pointer;
+        }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--terracotta);
+            border: 2px solid #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .music-label {
+            font-family: var(--font-script);
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        #celebrationCanvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            display: none;
+        }
+        #celebrationCanvas.active {
+            display: block;
+        }
+        .celebration-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            font-family: var(--font-script);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--terracotta-dark);
+            text-align: center;
+            background: rgba(253, 249, 241, 0.95);
+            padding: 2rem 3rem;
+            border-radius: 3rem 1rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: none;
+            border: 2px solid rgba(200, 150, 130, 0.3);
+        }
+        .celebration-message.active {
+            display: block;
+            animation: fadeInUp 0.7s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 30px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        footer {
+            text-align: center;
+            opacity: 0.55;
+            font-size: 0.95rem;
+            padding: 1rem;
+            font-family: var(--font-script);
+            color: var(--ink-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-watercolor" aria-hidden="true">
+        <div class="wash wash1"></div>
+        <div class="wash wash2"></div>
+        <div class="wash wash3"></div>
+        <div class="wash wash4"></div>
+        <div class="wash wash5"></div>
+    </div>
+    <div class="bg-floral" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <canvas id="particlesCanvas"></canvas>
+    <canvas id="celebrationCanvas"></canvas>
+    <div class="celebration-message" id="celebrationMessage">
+        "This might just be the beginning<br>of my favourite story."
+    </div>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <!-- Page 1: cover -->
+        <article class="journal-page">
+            <div class="washi-tape"></div>
+            <div style="text-align:center;font-size:1.6rem;opacity:0.7;">🌿 🦋 🌸</div>
+            <h1>For Siphesihle</h1>
+            <p class="heading-allura">you are art & poetry.</p>
+            <p style="text-align:center;font-style:italic;margin-top:0.6rem;">A little interactive journal, made with love and pressed flowers.</p>
+            <div style="display:flex;justify-content:center;gap:1rem;font-size:1.5rem;opacity:0.7;">📖 🎨 🕯️ 🌼</div>
+        </article>
+
+        <!-- Page 2: a note -->
+        <article class="journal-page">
+            <div class="paper-clip">📎</div>
+            <h2>✨ a note</h2>
+            <p>Some people walk into your life and everything suddenly feels softer, more colorful, like a watercolor painting still wet on the page. That's you, Siphesihle. In the most ordinary moments, you carry a quiet poetry. I wanted to build something that feels like the way you make the world look: gentle, full of pressed flowers, old paper, and words that linger.</p>
+            <p class="signature" style="text-align:right;">, someone completely charmed by you</p>
+        </article>
+
+        <!-- Page 3: sonnet 18 -->
+        <article class="journal-page">
+            <div class="wax-seal">♡</div>
+            <h2>🕊️ Sonnet 18</h2>
+            <p style="text-align:center;font-style:italic;color:#7a6858;">Shakespeare asked the perfect question…</p>
+            <div class="poem-block">
+                <p>Shall I compare thee to a summer's day?<br>Thou art more lovely and more temperate:<br>Rough winds do shake the darling buds of May,<br>And summer's lease hath all too short a date;</p>
+                <p>Sometime too hot the eye of heaven shines,<br>And often is his gold complexion dimm'd;<br>And every fair from fair sometime declines,<br>By chance or nature's changing course untrimm'd;</p>
+                <p>But thy eternal summer shall not fade,<br>Nor lose possession of that fair thou ow'st;<br>Nor shall death brag thou wander'st in his shade,<br>When in eternal lines to time thou grow'st:</p>
+                <p>So long as men can breathe or eyes can see,<br>So long lives this, and this gives life to thee.</p>
+            </div>
+            <p style="text-align:center;font-size:0.95rem;color:#7a6858;">, William Shakespeare</p>
+        </article>
+
+        <!-- Page 4: sketchbook reasons -->
+        <article class="journal-page">
+            <div class="washi-tape" style="background:linear-gradient(135deg,#d5e0cf,#e2ece0); top:-11px; height:19px; width:75px;"></div>
+            <h2>✍️ sketchbook reasons</h2>
+            <ul class="reasons-list">
+                <li>The way your laugh sounds like a song I want to put on repeat.</li>
+                <li>How you notice the tiny beautiful things, a fallen petal, a slant of light.</li>
+                <li>The kindness you scatter without even knowing you're doing it.</li>
+                <li>Your voice, which makes even a Tuesday feel like a soft Sunday morning.</li>
+                <li>The fact that you exist, and I get to exist at the same time as you.</li>
+            </ul>
+            <div style="display:flex;justify-content:center;gap:1rem;font-size:1.5rem;opacity:0.7;">📎 🖌️ 🌿</div>
+        </article>
+
+        <!-- Page 5: gallery 1 -->
+        <article class="journal-page">
+            <div class="paper-clip">🖇️</div>
+            <h2>🖼️ a tiny gallery</h2>
+            <p style="text-align:center;font-style:italic;">Just a few pieces that remind me of the beauty you carry.</p>
+            <div class="art-gallery-inline" id="gallery1"></div>
+        </article>
+
+        <!-- Page 6: gallery 2 -->
+        <article class="journal-page">
+            <div class="wax-seal" style="background:radial-gradient(circle at 35% 30%,#c5d4bd,#7a9a6e);">🌸</div>
+            <h2>🖼️ more gallery</h2>
+            <p style="text-align:center;font-style:italic;">Beauty deserves to be seen from every angle.</p>
+            <div class="art-gallery-inline" id="gallery2"></div>
+        </article>
+
+        <!-- Page 7: the question -->
+        <article class="journal-page" style="text-align:center;">
+            <div class="washi-tape"></div>
+            <div class="wax-seal" style="left:25px;right:auto;">💌</div>
+            <h2>so, I have a question…</h2>
+            <p style="font-size:clamp(1.3rem,2.5vw,1.6rem);">Siphesihle, will you be my girlfriend?</p>
+            <div class="buttons-row">
+                <button class="btn btn-yes" id="btnYes">Yes ❤️</button>
+                <button class="btn btn-no" id="btnNo">No 🙈</button>
+            </div>
+            <p class="response-msg" id="responseMsg"></p>
+        </article>
+    </div>
+
+    <div id="floatingContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></div>
+
+    <div class="music-player" id="musicPlayer">
+        <button class="music-btn" id="btnPlayPause">▶️</button>
+        <button class="music-btn" id="btnMute">🔇</button>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="60">
+        <span class="music-label">🎵</span>
+    </div>
+
+    <footer>🍂 made with soft colors and genuine admiration · for Siphesihle</footer>
+
+    <!-- Hidden audio for local music -->
+    <audio id="bgMusic" loop preload="auto" style="display:none;">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        (function() {
+            // scroll progress
+            const scrollProgress = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                scrollProgress.style.width = h > 0 ? Math.min((window.scrollY / h) * 100, 100) + '%' : '0%';
+            }, { passive: true });
+
+            // particles
+            const pCanvas = document.getElementById('particlesCanvas');
+            const pCtx = pCanvas.getContext('2d');
+            pCanvas.width = window.innerWidth;
+            pCanvas.height = window.innerHeight;
+            const particles = [];
+            const emojis = ['✨', '🦋', '🌿', '💮', '🍃', '✿', '·'];
+            for (let i = 0; i < 45; i++) {
+                particles.push({
+                    x: Math.random() * pCanvas.width,
+                    y: Math.random() * pCanvas.height,
+                    size: Math.random() * 14 + 6,
+                    speedY: -(Math.random() * 0.35 + 0.1),
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.35 + 0.08,
+                    emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                });
+            }
+            (function animateParticles() {
+                pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+                particles.forEach((p, i) => {
+                    p.y += p.speedY;
+                    p.x += p.speedX + Math.sin(Date.now() * 0.005 + i) * 0.25;
+                    if (p.y < -40 || p.x < -40 || p.x > pCanvas.width + 40) {
+                        particles[i] = {
+                            x: Math.random() * pCanvas.width,
+                            y: pCanvas.height + 30,
+                            size: Math.random() * 14 + 6,
+                            speedY: -(Math.random() * 0.35 + 0.1),
+                            speedX: (Math.random() - 0.5) * 0.3,
+                            opacity: Math.random() * 0.35 + 0.08,
+                            emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                        };
+                        return;
+                    }
+                    pCtx.save();
+                    pCtx.globalAlpha = p.opacity;
+                    pCtx.font = `${p.size}px serif`;
+                    pCtx.fillText(p.emoji, p.x, p.y);
+                    pCtx.restore();
+                });
+                requestAnimationFrame(animateParticles);
+            })();
+
+            window.addEventListener('resize', () => {
+                pCanvas.width = window.innerWidth;
+                pCanvas.height = window.innerHeight;
+            });
+
+            // Artwork data – using local images with .jpeg extension
+            const paintings = [
+                { title: 'The Starry Night', artist: 'Vincent van Gogh' },
+                { title: 'Water Lilies', artist: 'Claude Monet' },
+                { title: 'The Kiss', artist: 'Gustav Klimt' },
+                { title: 'Girl with a Pearl Earring', artist: 'Johannes Vermeer' },
+                { title: 'Irises', artist: 'Vincent van Gogh' },
+                { title: 'Café Terrace at Night', artist: 'Vincent van Gogh' },
+                { title: 'Almond Blossom', artist: 'Vincent van Gogh' },
+                { title: 'The Great Wave', artist: 'Katsushika Hokusai' },
+                { title: 'Woman with a Parasol', artist: 'Claude Monet' },
+                { title: 'The Birth of Venus', artist: 'Sandro Botticelli' },
+                { title: 'Impression, Sunrise', artist: 'Claude Monet' },
+                { title: 'The Swing', artist: 'Jean-Honoré Fragonard' },
+                { title: 'Dance at Le Moulin', artist: 'Pierre-Auguste Renoir' },
+                { title: 'Wanderer Above the Fog', artist: 'Caspar David Friedrich' },
+                { title: 'The Sleeping Gypsy', artist: 'Henri Rousseau' },
+                { title: 'Poppies', artist: 'Claude Monet' },
+                { title: 'Luncheon of the Boating Party', artist: 'Pierre-Auguste Renoir' },
+                { title: 'Roses', artist: 'Vincent van Gogh' }
+            ];
+
+            function createArtCard(index, painting) {
+                const div = document.createElement('div');
+                div.className = 'art-card-inline';
+                div.innerHTML = `
+                    <div class="art-frame-sm">
+                        <img src="artwork/${index}.jpeg" alt="${painting.title}" loading="lazy">
+                    </div>
+                    <span class="art-label-sm">${painting.title}<span class="artist-sm">${painting.artist}</span></span>
+                `;
+                return div;
+            }
+
+            const gallery1 = document.getElementById('gallery1');
+            const gallery2 = document.getElementById('gallery2');
+            paintings.slice(0, 9).forEach((p, i) => gallery1.appendChild(createArtCard(i + 1, p)));
+            paintings.slice(9, 18).forEach((p, i) => gallery2.appendChild(createArtCard(i + 10, p)));
+
+            // Floating side artworks
+            const floatingContainer = document.getElementById('floatingContainer');
+            function buildFloating() {
+                floatingContainer.innerHTML = '';
+                paintings.forEach((painting, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'floating-artwork ' + (i % 2 === 0 ? 'float-left' : 'float-right');
+                    el.style.top = (10 + i * 22) + '%';
+                    el.innerHTML = `
+                        <div class="art-inner">
+                            <img src="artwork/${i+1}.jpeg" alt="${painting.title}" loading="lazy">
+                        </div>
+                        <div style="text-align:center;">
+                            <span class="art-label">${painting.title}<span class="artist">${painting.artist}</span></span>
+                        </div>
+                    `;
+                    floatingContainer.appendChild(el);
+                });
+            }
+            buildFloating();
+
+            function animateFloating() {
+                const els = floatingContainer.querySelectorAll('.floating-artwork');
+                els.forEach((el, i) => {
+                    el.style.transform = `translateY(${Math.sin(Date.now()*0.0008+i)*8}px)`;
+                });
+                if (window.innerWidth > 750) requestAnimationFrame(animateFloating);
+            }
+            if (window.innerWidth > 750) requestAnimationFrame(animateFloating);
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 750) requestAnimationFrame(animateFloating);
+            });
+
+            // Music player (local file)
+            const audio = document.getElementById('bgMusic');
+            const btnPlayPause = document.getElementById('btnPlayPause');
+            const btnMute = document.getElementById('btnMute');
+            const volumeSlider = document.getElementById('volumeSlider');
+            let isPlaying = false;
+            let isMuted = true;
+            audio.muted = true;
+            audio.volume = 0.6;
+
+            audio.addEventListener('play', () => { isPlaying = true; btnPlayPause.textContent = '⏸️'; });
+            audio.addEventListener('pause', () => { isPlaying = false; btnPlayPause.textContent = '▶️'; });
+
+            document.body.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().catch(() => {});
+                }
+            }, { once: true });
+
+            btnPlayPause.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (audio.paused) {
+                    audio.play().catch(() => alert('Click anywhere first to enable music.'));
+                } else {
+                    audio.pause();
+                }
+            });
+
+            btnMute.addEventListener('click', (e) => {
+                e.stopPropagation();
+                audio.muted = !audio.muted;
+                isMuted = audio.muted;
+                btnMute.textContent = isMuted ? '🔇' : '🔊';
+            });
+
+            volumeSlider.addEventListener('input', () => {
+                audio.volume = parseFloat(volumeSlider.value) / 100;
+            });
+
+            // Yes / No buttons
+            const btnYes = document.getElementById('btnYes');
+            const btnNo = document.getElementById('btnNo');
+            const responseMsg = document.getElementById('responseMsg');
+            let noCount = 0;
+            btnYes.addEventListener('click', () => {
+                responseMsg.innerHTML = '💖 Yay! You just made my world infinitely brighter.<br>I can\'t wait to keep writing this story with you, Siphesihle.';
+                btnYes.disabled = true;
+                btnNo.disabled = true;
+                triggerCelebration();
+            });
+            btnNo.addEventListener('click', () => {
+                if (noCount < 3) {
+                    btnNo.classList.add('btn-shake');
+                    noCount++;
+                    setTimeout(() => btnNo.classList.remove('btn-shake'), 550);
+                    const msgs = [
+                        '🙈 Hmm, are you sure? That button seems a little jumpy…',
+                        '🫣 It\'s still shaking… maybe it wants you to reconsider?',
+                        '😄 Alright, alright, the button finally lets you choose freely. No hard feelings!'
+                    ];
+                    responseMsg.innerHTML = msgs[noCount - 1];
+                } else {
+                    responseMsg.innerHTML = '🌸 That\'s completely okay. Thank you for being you, and for letting me share this little journal.';
+                    btnNo.disabled = true;
+                    btnYes.disabled = true;
+                }
+            });
+
+            // Celebration
+            function triggerCelebration() {
+                const cCanvas = document.getElementById('celebrationCanvas');
+                const cMsg = document.getElementById('celebrationMessage');
+                cCanvas.classList.add('active');
+                cMsg.classList.add('active');
+                const ctx = cCanvas.getContext('2d');
+                cCanvas.width = window.innerWidth;
+                cCanvas.height = window.innerHeight;
+                const emojisCeleb = ['🌸', '🦋', '💖', '✨', '🌷', '💕', '🕊️', '🌼', '💗', '🌿', '🫧', '💐'];
+                const cparticles = [];
+                for (let i = 0; i < 150; i++) {
+                    cparticles.push({
+                        x: Math.random() * cCanvas.width,
+                        y: cCanvas.height + 30,
+                        size: Math.random() * 22 + 10,
+                        speedY: -(Math.random() * 2.5 + 1.2),
+                        speedX: (Math.random() - 0.5) * 2.5,
+                        rotation: Math.random() * 360,
+                        rotSpeed: (Math.random() - 0.5) * 4,
+                        opacity: 1,
+                        fadeRate: Math.random() * 0.003 + 0.001,
+                        emoji: emojisCeleb[Math.floor(Math.random() * emojisCeleb.length)],
+                    });
+                }
+                function animateCelebration() {
+                    ctx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+                    cparticles.forEach((p, i) => {
+                        p.y += p.speedY;
+                        p.x += p.speedX;
+                        p.rotation += p.rotSpeed;
+                        p.opacity -= p.fadeRate;
+                        if (p.opacity <= 0 || p.y < -60 || p.x < -60 || p.x > cCanvas.width + 60) {
+                            cparticles[i] = {
+                                x: Math.random() * cCanvas.width,
+                                y: cCanvas.height + 40,
+                                size: Math.random() * 22 + 10,
+                                speedY: -(Math.random() * 2.5 + 1.2),
+                                speedX: (Math.random() - 0.5) * 2.5,
+                                rotation: Math.random() * 360,
+                                rotSpeed: (Math.random() - 0.5) * 4,
+                                opacity: 1,
+                                fadeRate: Math.random() * 0.003 + 0.001,
+                                emoji: emojisCeleb[Math.floor(Math.random() * emojisCeleb.length)],
+                            };
+                            return;
+                        }
+                        ctx.save();
+                        ctx.globalAlpha = p.opacity;
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate((p.rotation * Math.PI) / 180);
+                        ctx.font = `${p.size}px serif`;
+                        ctx.fillText(p.emoji, 0, 0);
+                        ctx.restore();
+                    });
+                    requestAnimationFrame(animateCelebration);
+                }
+                animateCelebration();
+                setTimeout(() => {
+                    cCanvas.classList.remove('active');
+                    ctx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+                    setTimeout(() => cMsg.classList.remove('active'), 2000);
+                }, 8000);
+            }
+        })();
+    </script>
+</body>
+</html>
